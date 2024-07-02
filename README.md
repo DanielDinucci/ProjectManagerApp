@@ -80,7 +80,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 1. Clone this repository:
     
     ```
-    git clone https://github.com/DanielDinucci/ProjectManagerApp
+    git clone https://github.com/DanielDinucci/ProjectManagerApp.git
     cd ProjectManagerApp
     
     ```
