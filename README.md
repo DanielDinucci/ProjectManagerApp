@@ -120,7 +120,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
         
         ```
         
-    5. In **Setup**, under **Themes and Branding**, activate the **Lightning Lite** theme.
+    5. In **Setup**, under **Themes and Branding**, activate the Project Manager theme.
 
     6. In App Launcher, select the  Project Manager App.
 
