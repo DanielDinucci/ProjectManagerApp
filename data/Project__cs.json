@@ -1,0 +1,25 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Project__c",
+                "referenceId": "ProjectRef1"
+            },
+            "Name": "Apollo Lunar Mission"
+        },
+        {
+            "attributes": {
+                "type": "Project__c",
+                "referenceId": "ProjectRef2"
+            },
+            "Name": "International Space Station"
+        },
+        {
+            "attributes": {
+                "type": "Project__c",
+                "referenceId": "ProjectRef3"
+            },
+            "Name": "Mars Exploration Program"
+        }
+    ]
+}

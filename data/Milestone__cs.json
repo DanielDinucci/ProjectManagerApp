@@ -1,0 +1,169 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef1"
+            },
+            "Name": "Project Planning",
+            "Description__c": "Complete initial planning phase",
+            "StartDate__c": "2024-07-01",
+            "EndDate__c": "2024-07-10",
+            "Project__c": "@ProjectRef1"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef2"
+            },
+            "Name": "Design Phase",
+            "Description__c": "Finalize project design",
+            "StartDate__c": "2024-07-11",
+            "EndDate__c": "2024-07-20",
+            "Project__c": "@ProjectRef1"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef3"
+            },
+            "Name": "Prototype Development",
+            "Description__c": "Develop initial prototypes",
+            "StartDate__c": "2024-07-21",
+            "EndDate__c": "2024-07-30",
+            "Project__c": "@ProjectRef1"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef4"
+            },
+            "Name": "Testing Phase",
+            "Description__c": "Conduct thorough testing",
+            "StartDate__c": "2024-08-01",
+            "EndDate__c": "2024-08-10",
+            "Project__c": "@ProjectRef1"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef5"
+            },
+            "Name": "Final Review",
+            "Description__c": "Review all project aspects",
+            "StartDate__c": "2024-08-11",
+            "EndDate__c": "2024-08-20",
+            "Project__c": "@ProjectRef1"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef6"
+            },
+            "Name": "Initial Planning",
+            "Description__c": "Outline project scope and objectives",
+            "StartDate__c": "2024-07-01",
+            "EndDate__c": "2024-07-10",
+            "Project__c": "@ProjectRef2"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef7"
+            },
+            "Name": "System Architecture",
+            "Description__c": "Define system architecture",
+            "StartDate__c": "2024-07-11",
+            "EndDate__c": "2024-07-20",
+            "Project__c": "@ProjectRef2"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef8"
+            },
+            "Name": "Module Development",
+            "Description__c": "Develop project modules",
+            "StartDate__c": "2024-07-21",
+            "EndDate__c": "2024-07-30",
+            "Project__c": "@ProjectRef2"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef9"
+            },
+            "Name": "Integration Testing",
+            "Description__c": "Perform integration tests",
+            "StartDate__c": "2024-08-01",
+            "EndDate__c": "2024-08-10",
+            "Project__c": "@ProjectRef2"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef10"
+            },
+            "Name": "Project Handover",
+            "Description__c": "Handover completed project",
+            "StartDate__c": "2024-08-11",
+            "EndDate__c": "2024-08-20",
+            "Project__c": "@ProjectRef2"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef11"
+            },
+            "Name": "Concept Development",
+            "Description__c": "Develop initial project concepts",
+            "StartDate__c": "2024-07-01",
+            "EndDate__c": "2024-07-10",
+            "Project__c": "@ProjectRef3"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef12"
+            },
+            "Name": "Requirements Gathering",
+            "Description__c": "Gather all project requirements",
+            "StartDate__c": "2024-07-11",
+            "EndDate__c": "2024-07-20",
+            "Project__c": "@ProjectRef3"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef13"
+            },
+            "Name": "Implementation",
+            "Description__c": "Implement project features",
+            "StartDate__c": "2024-07-21",
+            "EndDate__c": "2024-07-30",
+            "Project__c": "@ProjectRef3"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef14"
+            },
+            "Name": "Quality Assurance",
+            "Description__c": "Ensure quality and performance",
+            "StartDate__c": "2024-08-01",
+            "EndDate__c": "2024-08-10",
+            "Project__c": "@ProjectRef3"
+        },
+        {
+            "attributes": {
+                "type": "Milestone__c",
+                "referenceId": "MilestoneRef15"
+            },
+            "Name": "Project Completion",
+            "Description__c": "Complete and finalize the project",
+            "StartDate__c": "2024-08-11",
+            "EndDate__c": "2024-08-20",
+            "Project__c": "@ProjectRef3"
+        }
+    ]
+}

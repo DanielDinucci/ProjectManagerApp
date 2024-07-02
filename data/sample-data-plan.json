@@ -1,0 +1,19 @@
+[
+    {
+        "sobject": "Project__c",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["Project__cs.json"]
+    },
+    {
+        "sobject": "Milestone__c",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["Milestone__cs.json"]
+    },
+    {
+        "sobject": "ToDoItem__c",
+        "resolveRefs": true,
+        "files": ["ToDoItem__cs.json"]
+    }
+]
