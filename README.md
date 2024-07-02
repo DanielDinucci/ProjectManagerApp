@@ -33,7 +33,7 @@ Once you access the application, you will see this screen:
 
 This is where you can create a project or search for an existing one.
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%201.png)
+![Untitled](data/README%Images/Untitled%201.png)
 
 When you create a project your user, you will automatically be the Project Owner, and all that remains is to enter the name of the project.
 
