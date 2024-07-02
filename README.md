@@ -29,45 +29,45 @@ In order for a project owner to have access to the application and components, i
 Once you access the application, you will see this screen:
 
 
-![Untitled](data/README%20Images/Untitled%201.png)
+![Untitled](data/README%20Images/Untitled%20.png)
 
 This is where you can create a project or search for an existing one.
 
-![Untitled](data/README%Images/Untitled%201.png)
+![Untitled](data/README%20Images/Untitled%201.png)
 
 When you create a project your user, you will automatically be the Project Owner, and all that remains is to enter the name of the project.
 
 Once selected, the main panel will display the information for the selected Project with values being updated if there are changes to the records on the screen. The second component will be displayed on the screen with the corresponding related records and the number of To-Do items assigned to them. To view the milestone information, click the “Edit” button:
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%202.png)
+![Untitled](data/README%20Images/Untitled%202.png)
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%203.png)
+![Untitled](data/README%20Images/Untitled%203.png)
 
 Continuing with the milestone selection, the third component is displayed with a data table with its values. If you want to access a To-Do item, you can simply click “Edit” to view the information as in the milestone or the link in the name that will redirect to the record screen.
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%204.png)
+![Untitled](data/README%20Images/Untitled%204.png)
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%205.png)
+![Untitled](data/README%20Images/Untitled%205.png)
 
 **Technical instructions:**
 
 The defined structure is simple and efficient, making it possible to obtain maximum information from child objects through standard Salesforce automations such as rollup summary fields and formula fields.
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%206.png)
+![Untitled](data/README%20Images/Untitled%206.png)
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%207.png)
+![Untitled](data/README%20Images/Untitled%207.png)
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%208.png)
+![Untitled](data/README%20Images/Untitled%208.png)
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%209.png)
+![Untitled](data/README%20Images/Untitled%209.png)
 
 The main screen is separated by three Lightning Web Components ProjectManagerParent, ProjectManagerMilestoneList and ProjectManagerToDoList
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%2010.png)
+![Untitled](data/README%20Images/Untitled%2010.png)
 
 Each of them has a lightning message channel, enabling real-time communication between them.
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled%2011.png)
+![Untitled](data/README%20Images/Untitled%2011.png)
 
 So if the ProjectManagerToDoList component is updated, it communicates with the ProjectManagerMilestoneList and then with the ProjectManagerParent, resulting in dashboards that are reactive to any interaction.
 
