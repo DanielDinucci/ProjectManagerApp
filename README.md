@@ -28,7 +28,7 @@ In order for a project owner to have access to the application and components, i
 
 Once you access the application, you will see this screen:
 
-![Untitled](README%20ddba69574bac432ca0d0950c91abada1/Untitled.png)
+![Untitled](data/README images/Untitled.png)
 
 This is where you can create a project or search for an existing one.
 
