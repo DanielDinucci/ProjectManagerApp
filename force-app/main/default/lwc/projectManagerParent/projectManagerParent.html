@@ -1,0 +1,61 @@
+<template>
+    <div lwc:if={spinner}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </div>
+    <lightning-card title="Project view">
+        <template lwc:if={showProject}>
+            <lightning-button label="Edit" slot="actions" variant="brand" onclick={handleEdit} class="slds-p-right_xx-small"></lightning-button>
+            <lightning-button label="Delete" slot="actions" variant="brand" onclick={handleDeleteItem} class="slds-p-right_xx-small"></lightning-button>
+            <lightning-button label="Close" slot="actions" variant="brand" onclick={handleClose} ></lightning-button>
+            <div class="slds-page-header slds-page-header_record-home">
+                <div class="slds-page-header__row">
+                  <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                      <div class="slds-media__figure">
+                          <lightning-progress-ring value={projectCompletion} variant="base-autocomplete" size="large"></lightning-progress-ring>
+                      </div>
+                      <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                          <div class="slds-page-header__name-title">
+                            <h1>
+                              <span class="slds-page-header__title slds-truncate" title={projectName}>{projectName}</span>
+                            </h1>
+                          </div> 
+                        </div>
+                        <p class="slds-page-header__name-meta">Created • {createdDate}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="slds-page-header__row slds-page-header__row_gutters">
+                  <div class="slds-page-header__col-details">
+                    <ul class="slds-page-header__detail-row">
+                      <li class="slds-page-header__detail-block">
+                        <div class="slds-text-title slds-truncate" title="Status">Status</div>
+                        <div class="slds-truncate" title={projectStatus}>{projectStatus}</div>
+                      </li>
+                      <li class="slds-page-header__detail-block">
+                        <div class="slds-text-title slds-truncate" title="Completion">Completion</div>
+                        <div class="slds-truncate" title={projectCompletion}>{projectCompletion}%</div>
+                      </li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template lwc:else>
+            <lightning-button label="New Project" slot="actions" variant="brand" onclick={handleCreateProject}></lightning-button>
+            <div class="slds-m-around_medium slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning-record-picker
+                        label="Find a project"
+                        placeholder="Search project..."
+                        object-api-name="Project__c"
+                        value={projectSelectedRec}
+                        onchange={handleProjectSelectedRec} >
+                    </lightning-record-picker>
+                </div>
+            </div>
+        </template>
+    </lightning-card>
+</template>

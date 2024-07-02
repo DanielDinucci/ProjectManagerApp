@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ToDoItemsRelated__c</fullName>
+    <description>Number of to-do items related to the milestone.</description>
+    <inlineHelpText>Number of to-do items related to the milestone.</inlineHelpText>
+    <label>To-Do items</label>
+    <summaryForeignKey>ToDoItem__c.Milestone__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

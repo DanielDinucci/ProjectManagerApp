@@ -1,0 +1,26 @@
+<template>
+	<template lwc:if={showMilestones}>
+		<lightning-card title="Milestone view">
+			<lightning-button label="New" slot="actions" variant="brand" onclick={handleCreate} class="slds-p-right_xx-small"></lightning-button>
+			<lightning-button label="Edit" slot="actions" variant="brand" onclick={handleEdit} class="slds-p-right_xx-small"></lightning-button>
+			<lightning-button label="Delete" slot="actions" variant="brand" onclick={handleDeleteItem} ></lightning-button>
+			<div class="slds-p-horizontal_small">
+				<div style="width: 100%;" >
+					<lightning-vertical-navigation onselect={handleSelection} ondblclick={handleNavigate}>
+						<lightning-vertical-navigation-section>
+							<template for:each={milestoneList} for:item="item">
+								<lightning-vertical-navigation-item-badge 
+									key={item.Id} 
+									label={item.Name}
+									name={item.Id}
+									badge-count={item.ToDoItemsRelated__c}
+									>
+								</lightning-vertical-navigation-item-badge>
+							</template>
+						</lightning-vertical-navigation-section>
+					</lightning-vertical-navigation>
+				</div>
+			</div>
+		</lightning-card>
+	</template>
+</template>

@@ -1,0 +1,19 @@
+<template>
+    <template lwc:if={showToDoItems}>
+        <lightning-card title="To-Do Items view">
+			<lightning-button label="New" slot="actions" variant="brand" onclick={handleCreate} class="slds-p-right_xx-small"></lightning-button>
+			<lightning-button label="Edit" slot="actions" variant="brand" onclick={handleEdit} class="slds-p-right_xx-small"></lightning-button>
+            <lightning-button label="Delete" slot="actions" variant="brand" onclick={handleDeleteItem} ></lightning-button>
+			<div class="slds-p-around_small">
+                <lightning-datatable
+                    key-field="id"
+                    data={ToDoItemList}
+                    columns={cols}
+                    onrowselection={handleRowSelection}
+                    onrowaction={handleDeleteItem}
+                    > 
+                </lightning-datatable>
+            </div>
+        </lightning-card>
+    </template>
+</template>

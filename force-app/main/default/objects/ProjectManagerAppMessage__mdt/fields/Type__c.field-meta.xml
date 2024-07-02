@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <description>The theme and icon displayed in the toast. Valid values are:
+success - A green box with a checkmark icon.
+warning - A yellow box with a warning icon.
+error - A red box with an error icon.
+info - A gray box with an info icon.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>The theme and icon displayed in the toast. Valid values are:
+success - A green box with a checkmark icon.
+warning - A yellow box with a warning icon.
+error - A red box with an error icon.
+info - A gray box with an info icon.</inlineHelpText>
+    <label>Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>success</fullName>
+                <default>true</default>
+                <label>success</label>
+            </value>
+            <value>
+                <fullName>warning</fullName>
+                <default>false</default>
+                <label>warning</label>
+            </value>
+            <value>
+                <fullName>error</fullName>
+                <default>false</default>
+                <label>error</label>
+            </value>
+            <value>
+                <fullName>info</fullName>
+                <default>false</default>
+                <label>info</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
