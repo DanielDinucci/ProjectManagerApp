@@ -1,7 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import {subscribe, publish, MessageContext} from 'lightning/messageService';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
-import { deleteRecord } from 'lightning/uiRecordApi';
+import { refreshApex } from "@salesforce/apex";
 import LightningConfirm from "lightning/confirm";
 import RecordFormModal from 'c/recordFormModal';
 import To_Do_Channel from '@salesforce/messageChannel/toDoChannel__c';
@@ -20,23 +20,22 @@ const COLS = [
 export default class ProjectManagerToDoList extends LightningElement {
 
     cols = COLS;
+    baseURL;
     parentId;
     toastsMsgs;
-    baseURL
     showToDoItems;
     ToDoItemList;
     selectedRow;
-    
-    @wire(MessageContext)
-    messageContext;
 
+    // The connectedCallBack initiates the subscription to the messaging channel to receive new information in real time.
+    // In this case, triggering refreshApex to update the information in the panel.
     connectedCallback() {
+        this.baseURL = window.location.origin + '/';
         subscribe(this.messageContext, To_Do_Channel, (payload) => {
-            this.baseURL = payload.baseURL;
             if(payload.recordId != null){
                 this.parentId = payload.recordId;
                 this.toastsMsgs = payload.toastsMsgs
-                this.getRecords();
+                refreshApex(this.dataWired);
             }else{
                 this.parentId = null;
                 this.showToDoItems = false;
@@ -44,17 +43,20 @@ export default class ProjectManagerToDoList extends LightningElement {
         })
     }
 
-    getRecords(){
-        getToDoItemsByParentId({parentId: this.parentId})
-        .then((data)=>{
+    @wire(MessageContext)
+    messageContext;
+
+    // @Wire promotes the most responsive connection to the backend by updating data when necessary.
+    @wire(getToDoItemsByParentId, { parentId: '$parentId' })
+    toDoItems(value){
+        this.dataWired = value;
+        const {data} = value
+        if(data){
             this.setDataTableValues(data);
-        }).catch((error)=>{
-            let toast = this.toastsMsgs.GenericError;
-            this.showToast(toast.MasterLabel, toast.Message__c + ' - ' + error, toast.Type__c, toast.Mode__c);
-        })
-        
+        }
     }
 
+    // Goes through the list assembling the values ​​that will be used in datatale.
     setDataTableValues(data){
         this.ToDoItemList = [];
         for (var i in data) {
@@ -71,24 +73,28 @@ export default class ProjectManagerToDoList extends LightningElement {
         this.showToDoItems = true;
     }
 
+    // Opens the Lightning record form in edit mode within a record creation modal.
     handleCreate() {
         RecordFormModal.open({
             objectName : 'ToDoItem__c',
             headerlabel: 'Create To-Do',
             label: 'Create To-Do',
             mode: 'edit'
-        }).then((result) => {
-            console.log(result)
+        }).then((result, error) => {
             if(result != null){
                 this.publishChannel(true);
-                this.getRecords()
-                let toast = this.toastsMsgs.SuccessfulCreation;
+                refreshApex(this.dataWired);
+                let toast = this.toastsMsgs.RecordCreated;
                 this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                 this.showToDoItems = true;
+            }else if(error){
+                let toast = this.toastsMsgs.CreationFailed;
+                this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
             }
         })
     }
 
+    // Opens the Lightning record form in view mode within a modal to view and edit the record.
     handleEdit() {
         if(this.selectedRow != null){
             RecordFormModal.open({
@@ -97,21 +103,25 @@ export default class ProjectManagerToDoList extends LightningElement {
                 label: 'Edit To-Do',
                 mode: 'view',
                 recordid: this.selectedRow[0].id
-            }).then((result) => {
+            }).then((result, error) => {
                 if(result != null){
                     this.publishChannel(true);
-                    this.getRecords();
-                    let toast = this.toastsMsgs.SuccessfulCreation;
+                    refreshApex(this.dataWired);
+                    let toast = this.toastsMsgs.RecordEdited;
+                    this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
+                }else if(error){
+                    let toast = this.toastsMsgs.EditionFailed;
                     this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                 }
             })
         }else{
-            this.showToast('Select a record', 'Select a To-Do item','warning' );
+            let toast = this.toastsMsgs.SelectARecord;
+            this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
         }
     }
     
+    // Opens the confirmation modal to continue with the record deletion.
     handleDeleteItem() {
-        console.log('Selected Row >>> ' + JSON.stringify(this.selectedRow))
         if(this.selectedRow != null){
             LightningConfirm.open({
                 variant: 'header',
@@ -121,25 +131,26 @@ export default class ProjectManagerToDoList extends LightningElement {
                 if(result == true){
                     deleteItem({ recordId : this.selectedRow[0].id }).then((result) => {
                         if(result == true){
-                            this.selectedRow = null;
-                            this.showToast('Success', 'To-Do Item deleted','success' );
+                            this.clearRowSelection();
+                            let toast = this.toastsMsgs.RecordDeleted;
+                            this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                         }else{
-                            let toast = this.toastsMsgs.GenericError;
+                            let toast = this.toastsMsgs.DeletionFaild;
                             this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                         }
                         this.publishChannel(true);
-                        this.getRecords();
+                        refreshApex(this.dataWired);
                     })
                 }
             });
+        }else{
+            let toast = this.toastsMsgs.SelectARecord;
+            this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
         }
     }
 
-    handleRowAction(event){
-        console.log(event.detail);
-    }
-
-    handleRowSelection = event => {
+    // Method that only allows the selection of one item from the datatable at a time
+    handleRowSelection(event){
         this.selectedRow = []
         this.selectedRow.push(event.detail.selectedRows[0]);
         var selectedRows = event.detail.selectedRows;
@@ -151,9 +162,10 @@ export default class ProjectManagerToDoList extends LightningElement {
         }
     }
 
-    publishChannel(reloadParent){
-        const payload = { reload: reloadParent };
-        publish(this.messageContext, Milestone_Channel, payload);
+    // Method that clears the selection of the data table
+    clearRowSelection() {
+        this.selectedRow = [];
+        this.template.querySelector('lightning-datatable').selectedRows.slice(1);
     }
 
     showToast(title, msg, variant , mode) {
@@ -164,5 +176,11 @@ export default class ProjectManagerToDoList extends LightningElement {
             mode: mode ?? 'dismissible'
         });
         this.dispatchEvent(evt);
+    }
+
+    // Publishes the payload in message channel
+    publishChannel(reloadParent){
+        const payload = { reload: reloadParent };
+        publish(this.messageContext, Milestone_Channel, payload);
     }
 }

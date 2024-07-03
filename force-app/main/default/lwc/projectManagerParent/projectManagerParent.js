@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { subscribe, publish, MessageContext } from "lightning/messageService";
@@ -20,7 +20,6 @@ export default class ProjectManagerParent extends LightningElement {
 
     showProject;
     toastsMsgs;
-    baseURL;
     projectSelectedRec;
     projectName = '';
     projectStatus = '';
@@ -29,6 +28,8 @@ export default class ProjectManagerParent extends LightningElement {
     dataWired;
     spinner = true;
     
+    // The connectedCallBack initiates the subscription to the messaging channel to receive new information in real time.
+    // In this case, triggering refreshApex to update the information in the panel.
     connectedCallback(){
         subscribe(this.messageContext, Project_Channel, (payload) => {
             if(payload.reload == true){
@@ -38,21 +39,13 @@ export default class ProjectManagerParent extends LightningElement {
         getProjectManagerAppMessageMDT().then((data)=>{
             this.toastsMsgs = data;
         });
-        this.baseURL = window.location.origin + '/';
         this.spinner = false;
-    }
-
-    // Convert Datetime to en-US date format
-    convertDateTimeToUsDate(isoString) {
-        const date = new Date(isoString);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const result = date.toLocaleDateString('en-US', options);
-        return result;
     }
 
     @wire(MessageContext)
     messageContext;
 
+    // @Wire promotes the most responsive connection to the backend by updating data when necessary.
     @wire(getRecord, {recordId: '$projectSelectedRec', fields: FIELDS})
     project( value ){
         this.dataWired = value;
@@ -63,38 +56,54 @@ export default class ProjectManagerParent extends LightningElement {
             this.projectCompletion = data.fields.Completion__c.value;
             this.createdDate = this.convertDateTimeToUsDate(data.fields.CreatedDate.value);
         }
-        this.spinner = false;
+    }
+
+    // Convert Datetime to en-US date format.
+    convertDateTimeToUsDate(isoString) {
+        const date = new Date(isoString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const result = date.toLocaleDateString('en-US', options);
+        return result;
     }
     
+    // Receives the event with the record ID, sends it on the message channel to the child lwc
+    // and stores the information in the variable that triggers the wire.
     handleProjectSelectedRec(event) {
         this.publishChannel(event.detail.recordId);
-        this.showProject = true;
         this.projectSelectedRec = event.detail.recordId;
+        this.showProject = true;
     }
 
+    // Ends the display of the parent component followed by its children 
+    // and returns to the home screen to create or access another record.
     handleClose(){
         this.publishChannel(null);
-        this.showProject = false;
         this.projectSelectedRec = null;
+        this.showProject = false;
     }
 
+    // Opens the Lightning record form in edit mode within a record creation modal.
     handleCreateProject() {
         RecordFormModal.open({
             objectName : 'Project__c',
             headerlabel: 'Create Project',
             mode: 'edit'
-        }).then((result) => {
+        }).then((result , error) => {
             console.log(result)
             if(result != null){
                 this.publishChannel(result);
                 this.projectSelectedRec = result;
                 this.showProject = true;
-                let toast = this.toastsMsgs.SuccessfulCreation;
+                let toast = this.toastsMsgs.RecordCreated;
+                this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
+            }else if(error){
+                let toast = this.toastsMsgs.CreationFailed;
                 this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
             }
         })
     }
 
+    // Opens the Lightning record form in view mode within a modal to view and edit the record.
     handleEdit() {
         if(this.projectSelectedRec != null){
             RecordFormModal.open({
@@ -102,21 +111,25 @@ export default class ProjectManagerParent extends LightningElement {
                 headerlabel: 'Edit Project',
                 mode: 'view',
                 recordid: this.projectSelectedRec
-            }).then((result) => {
+            }).then((result , error) => {
                 if(result != null){
                     this.publishChannel(true);
                     this.getRecords();
-                    let toast = this.toastsMsgs.SuccessfulCreation;
+                    let toast = this.toastsMsgs.RecordEdited;
+                    this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
+                }else if(error){
+                    let toast = this.toastsMsgs.EditionFailed;
                     this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                 }
             })
         }else{
-            this.showToast('Select a record', 'Select a To-Do item','warning' );
+            let toast = this.toastsMsgs.SelectARecord;
+            this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
         }
     }
 
+    // Opens the confirmation modal to continue with the record deletion.
     handleDeleteItem() {
-        console.log('this.projectSelectedRec >>> ' + this.projectSelectedRec)
         if(this.projectSelectedRec != null){
             LightningConfirm.open({
                 variant: 'header',
@@ -129,30 +142,36 @@ export default class ProjectManagerParent extends LightningElement {
                         if(result == true){
                             this.projectSelectedRec = null;
                             this.showProject = false;
-                            this.showToast('Success', 'Milestone deleted','success' );
+                            let toast = this.toastsMsgs.RecordDeleted;
+                            this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                         }else{
-                            let toast = this.toastsMsgs.GenericError;
+                            let toast = this.toastsMsgs.DeletionFaild;
                             this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
                         }
                         this.publishChannel(null, false, Milestone_Channel);
                     })
                 }
             });
+        }else{
+            let toast = this.toastsMsgs.SelectARecord;
+            this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);
         }
     }
 
-    showToast(title, msg, variant , mode) {
+    // Displays the information passed in a toast.
+    showToast(title, msg, variant, mode) {
         const evt = new ShowToastEvent({
             title: title,
             message: msg,
             variant: variant,
-            mode: mode
+            mode: mode ?? 'dismissible'
         });
         this.dispatchEvent(evt);
     }
 
+    // Publishes the payload in message channel
     publishChannel(id){
-        const payload = { recordId: id, toastsMsgs: this.toastsMsgs, baseURL: this.baseURL };
+        const payload = { recordId: id, toastsMsgs: this.toastsMsgs };
         publish(this.messageContext, Milestone_Channel, payload);
     }
 }

@@ -1,6 +1,6 @@
 public with sharing class ProjectManagerToDoListController {
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<ToDoItem__c> getToDoItemsByParentId( String parentId){
         try {
             return [
@@ -17,6 +17,6 @@ public with sharing class ProjectManagerToDoListController {
     // A Boolean value that is set to true if the DML operation was successful for this object, false otherwise.
     @AuraEnabled
     public static Boolean deleteItem(String recordId){
-        return Utils.deleteItem(new ToDoItem__c(Id = recordId))
+        return Utils.deleteItem(new ToDoItem__c(Id = recordId));
     }
 }

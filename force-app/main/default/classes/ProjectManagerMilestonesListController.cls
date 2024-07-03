@@ -1,6 +1,6 @@
 public with sharing class ProjectManagerMilestonesListController {
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Milestone__c> getMilestonesByParentId(String parentId){
         try {
             return [
@@ -16,6 +16,6 @@ public with sharing class ProjectManagerMilestonesListController {
     // A Boolean value that is set to true if the DML operation was successful for this object, false otherwise.
     @AuraEnabled
     public static Boolean deleteItem(String recordId){
-        return Utils.deleteItem(new Milestone__c(Id = recordId))
+        return Utils.deleteItem(new Milestone__c(Id = recordId));
     }
 }
