@@ -72,7 +72,7 @@ Each of them has a lightning message channel, enabling real-time communication b
 
 ![Untitled](data/README%20Images/Untitled%2011.png)
 
-So if the ProjectManagerToDoList component is updated, it communicates with the ProjectManagerMilestoneList and then with the ProjectManagerParent, resulting in dashboards that are reactive to any interaction.
+So, if the ProjectManagerToDoList component is updated, it communicates with the ProjectManagerMilestoneList and then with the ProjectManagerParent, resulting in dashboards that are reactive to any interaction.
 
 **Improvement points:** 
 (due to lack of time, it was not possible to implement in this release)
@@ -81,7 +81,9 @@ So if the ProjectManagerToDoList component is updated, it communicates with the 
    
 2. A lookup was created in the To-Do Item object to assign the task to the user, from there it is possible to implement a sharing rule or sharing via another automation (examples: Hierarchies, Public Groups, Territory Management, Apex Managed Sharing) in the Project object so that the selected user has visibility of the project and can act on the task assigned to him.
    
-3. define a ProjectManagerApp permission set to limit access for users with less access to fields on associated objects, such as those that might be associated with a task item.
+3. Define a ProjectManagerApp permission set to limit access for users with less access to fields on associated objects, such as those that might be associated with a task item.
+
+4. In the child lwc components, replace the solution in the creation of records, with "Lightning record form edit" which allows displaying pre-filled fields, in this case to be displayed with the value referring to the parent in the relationship field. 
 
 
 **Installing Project Manager using a Developer Edition Org or a Trailhead Playground**
