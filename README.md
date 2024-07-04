@@ -94,30 +94,34 @@ So if the ProjectManagerToDoList component is updated, it communicates with the 
         ```
         sf project deploy -o mydevorg --async
         ```
+        Select deploy start:
+       
+        ![image](https://github.com/DanielDinucci/ProjectManagerApp/assets/69609230/b6d39891-bcd6-4caf-8378-e618b97ed6f8)
+
         
-    2. Assign the Project Manager Owners permission set to the test user.
+    3. Assign the Project Manager Owners permission set to the test user.
         
         ```
         sf org assign permset -n ProjectManagerOwners
         
         ```
         
-    3. Import some sample data.
+    4. Import some sample data.
         
         ```
         sf data tree import -p ./data/sample-data-plan.json
         
         ```
         
-    4. If your org isn't already open, open it now:
+    5. If your org isn't already open, open it now:
         
         ```
         sf org open
         
         ```
         
-    5. In **Setup**, under **Themes and Branding**, activate the Project Manager theme.
+    6. In **Setup**, under **Themes and Branding**, activate the Project Manager theme.
 
-    6. In App Launcher, select the  Project Manager App.
+    7. In App Launcher, select the  Project Manager App.
 
 
