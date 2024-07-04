@@ -106,5 +106,9 @@
     <members>ProjectStatus</members>
     <name>GlobalValueSet</name>
 </types>
+<types>
+    <members>Sharing</members>
+    <name>Settings</name>
+</types>
 <version>61.0</version>
 </Package>

@@ -7,6 +7,7 @@ public with sharing class ProjectManagerMilestonesListController {
                 SELECT Id, Name, ToDoItemsRelated__c, Completion__c
                 FROM Milestone__c 
                 WHERE Project__c =: parentId
+                WITH SECURITY_ENFORCED
             ];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

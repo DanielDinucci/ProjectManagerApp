@@ -12,6 +12,7 @@ public with sharing class ProjectManagerParentController {
                 SELECT Id, Name, Completion__c, CreatedDate, Status__c
                 FROM Project__c
                 WHERE Id =: recordId
+                WITH SECURITY_ENFORCED
             ];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

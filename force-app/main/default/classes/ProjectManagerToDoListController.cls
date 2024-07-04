@@ -7,6 +7,7 @@ public with sharing class ProjectManagerToDoListController {
                 SELECT Id, Name, Status__c, AssignedTo__r.Name, StartDate__c, EndDate__c
                 FROM ToDoItem__c
                 WHERE Milestone__c =: parentId
+                WITH SECURITY_ENFORCED
             ];
             
         } catch (Exception e) {
