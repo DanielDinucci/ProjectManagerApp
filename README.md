@@ -94,6 +94,9 @@ So if the ProjectManagerToDoList component is updated, it communicates with the 
         ```
         sf project deploy -o mydevorg --async
         ```
+        Select deploy start:
+![image](https://github.com/DanielDinucci/ProjectManagerApp/assets/69609230/b6d39891-bcd6-4caf-8378-e618b97ed6f8)
+
         
     2. Assign the Project Manager Owners permission set to the test user.
         
