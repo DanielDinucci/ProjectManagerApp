@@ -1,15 +1,110 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 <types>
-    <members>*</members>
+    <members>ProjectManager</members>
+    <name>LightningExperienceTheme</name>
+</types>
+<types>
+    <members>download</members>
     <name>ContentAsset</name>
 </types>
 <types>
-    <members>*</members>
+    <members>LEXTHEMINGProjectManager</members>
     <name>BrandingSet</name>
 </types>
 <types>
-    <members>*</members>
-    <name>LightningExperienceTheme</name>
+    <members>ProjectManagerMilestonesControllerTest</members>
+    <members>ProjectManagerMilestonesListController</members>
+    <members>ProjectManagerParentController</members>
+    <members>ProjectManagerParentControllerTest</members>
+    <members>ProjectManagerToDoListController</members>
+    <members>ProjectManagerToDoListControllerTest</members>
+    <members>Utils</members>
+    <name>ApexClass</name>
+</types>
+<types>
+    <members>ProjectManagerAppMessage.CreationFailed</members>
+    <members>ProjectManagerAppMessage.DeletionFailed</members>
+    <members>ProjectManagerAppMessage.EditionFailed</members>
+    <members>ProjectManagerAppMessage.GenericError</members>
+    <members>ProjectManagerAppMessage.RecordCreated</members>
+    <members>ProjectManagerAppMessage.RecordDeleted</members>
+    <members>ProjectManagerAppMessage.RecordEdited</members>
+    <members>ProjectManagerAppMessage.SelectARecord</members>
+    <name>CustomMetadata</name>
+</types>
+<types>
+    <members>Milestone</members>
+    <members>Project_Manager</members>
+    <members>Project_Manager_UtilityBar</members>
+    <members>Project_Record_Page</members>
+    <members>To_Do_Item_Page</members>
+    <name>FlexiPage</name>
+</types>
+<types>
+    <members>Project__c.Required_project_name</members>
+    <members>Milestone__c.Required_milestone_name</members>
+    <members>ToDoItem__c.Required_todo_name</members>
+    <name>ValidationRule</name>
+</types>
+<types>
+    <members>Milestone__c.CompletedToDoItemsRelated__c</members>
+    <members>Milestone__c.Completion__c</members>
+    <members>Milestone__c.Description__c</members>
+    <members>Milestone__c.EndDate__c</members>
+    <members>Milestone__c.Project__c</members>
+    <members>Milestone__c.StartDate__c</members>
+    <members>Milestone__c.Status__c</members>
+    <members>Milestone__c.ToDoItemsRelated__c</members>
+    <members>ProjectManagerAppMessage__mdt.Message__c</members>
+    <members>ProjectManagerAppMessage__mdt.Mode__c</members>
+    <members>ProjectManagerAppMessage__mdt.Type__c</members>
+    <members>Project__c.Completion__c</members>
+    <members>Project__c.Status__c</members>
+    <members>Project__c.TotalCompletedMilestones__c</members>
+    <members>Project__c.TotalMilestones__c</members>
+    <members>ToDoItem__c.AssignedTo__c</members>
+    <members>ToDoItem__c.Description__c</members>
+    <members>ToDoItem__c.EndDate__c</members>
+    <members>ToDoItem__c.Milestone__c</members>
+    <members>ToDoItem__c.StartDate__c</members>
+    <members>ToDoItem__c.Status__c</members>
+    <name>CustomField</name>
+</types>
+<types>
+    <members>Milestone__c</members>
+    <members>ProjectManagerAppMessage__mdt</members>
+    <members>Project__c</members>
+    <members>ToDoItem__c</members>
+    <name>CustomObject</name>
+</types>
+<types>
+    <members>Milestone__c.All</members>
+    <members>Project__c.All</members>
+    <members>ToDoItem__c.All</members>
+    <name>ListView</name>
+</types>
+<types>
+    <members>milestoneChannel</members>
+    <members>parentProjectChannel</members>
+    <members>toDoChannel</members>
+    <name>LightningMessageChannel</name>
+</types>
+<types>
+    <members>projectManagerMilestonesList</members>
+    <members>projectManagerParent</members>
+    <members>projectManagerToDoList</members>
+    <members>recordFormModal</members>
+    <name>LightningComponentBundle</name>
+</types>
+<types>
+    <members>ToDoItem__c-To-Do Item Layout</members>
+    <members>Project__c-Project Layout</members>
+    <members>Milestone__c-Milestone Layout</members>
+    <name>Layout</name>
+</types>
+<types>
+    <members>ProjectStatus</members>
+    <name>GlobalValueSet</name>
 </types>
 <version>61.0</version>
 </Package>

@@ -82,8 +82,8 @@ export default class ProjectManagerMilestonesList extends NavigationMixin(Lightn
             mode: 'edit'
         }).then((result, error) => {
             if(result != null){
-                this.publishChannel(result, false, To_Do_Channel);
                 refreshApex(this.dataWired);
+                this.publishChannel(result, false, To_Do_Channel);
                 this.showMilestones = true;
                 let toast = this.toastsMsgs.RecordCreated;
                 this.showToast(toast.MasterLabel, toast.Message__c, toast.Type__c, toast.Mode__c);

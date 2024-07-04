@@ -5,8 +5,6 @@ public with sharing class ProjectManagerParentController {
         return ProjectManagerAppMessage__mdt.getAll();
     }
 
-    // Method available to be called by framesworks via @AuraEnabled 
-    // and returns a query on the passed id and returns the field values.
     @AuraEnabled
     public static List<Project__c> getProjectById(String recordId){
         try {
