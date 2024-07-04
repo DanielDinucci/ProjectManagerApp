@@ -54,6 +54,8 @@ Continuing with the milestone selection, the third component is displayed with a
 The defined structure is simple and efficient, making it possible to obtain maximum information from child objects through standard Salesforce automations such as rollup summary fields and formula fields.
 
 ![Untitled](data/README%20Images/Untitled%206.png)
+We have a master-detail relationship with the Milestone_c object being the detail side of the Project__c object and the To-Do-Item object being the detail side of the Milestone__c object.
+
 The Organization-Wide Defaults of the parent object (Project__c) have been set to “Private”, and because of the master-detail relationship, the child objects (Milestone__c and To-Do Item__c) are controlled by the Parent. Therefore, a Project owner does not have access to other owners’ records. If access is granted to a child record, the user also gets read access to the parent object.
 
 ![Untitled](data/README%20Images/Untitled%207.png)
