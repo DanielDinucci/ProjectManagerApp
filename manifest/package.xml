@@ -54,6 +54,7 @@
     <members>Milestone__c.Project__c</members>
     <members>Milestone__c.StartDate__c</members>
     <members>Milestone__c.Status__c</members>
+    <members>Milestone__c.Description__c</members>
     <members>Milestone__c.ToDoItemsRelated__c</members>
     <members>ProjectManagerAppMessage__mdt.Message__c</members>
     <members>ProjectManagerAppMessage__mdt.Mode__c</members>
@@ -109,6 +110,10 @@
 <types>
     <members>Sharing</members>
     <name>Settings</name>
+</types>
+<types>
+    <members>ProjectManagerOwners</members>
+    <name>PermissionSet</name>
 </types>
 <version>61.0</version>
 </Package>
