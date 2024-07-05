@@ -37,7 +37,7 @@ This is where you can create a project or search for an existing one.
 
 When you create a project your user, you will automatically be the Project Owner, and all that remains is to enter the name of the project.
 
-Once selected, the main panel will display the information for the selected Project with values being updated if there are changes to the records on the screen. The second component will be displayed on the screen with the corresponding related records and the number of To-Do items assigned to them. To view the milestone information, click the “Edit” button or double-click the item to be redirected to the record page:
+Once selected, the main panel will display the information for the selected Project with values being updated if there are changes to the records on the screen. The second component will be displayed on the screen with the corresponding related records and the number of To-Do items assigned to them. To view the milestone information, click the “Edit” button or double-click the item to be redirected to the record page :
 
 ![Untitled](data/README%20Images/Untitled%202.png)
 
